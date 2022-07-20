@@ -17,21 +17,32 @@ Follow up: What if the inputs contain Unicode characters? How would you adapt yo
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        temp_dict = {}
-        # result =
-        if len(s) != len(t):
+        s_dict = {}
+        t_dict = {}
+        s_len = len(s)
+        if s_len != len(t):
             return False
 
-        for letter in t:
-            temp_dict[letter] = letter
-        for letter in s:
-            if letter not in temp_dict:
+        for index in range(s_len):
+            if s[index] in s_dict:
+                s_dict[s[index]] += 1
+            else:
+                s_dict[s[index]] = 1
+
+            if t[index] in t_dict:
+                t_dict[t[index]] += 1
+            else:
+                t_dict[t[index]] = 1
+
+        for letter, value in s_dict.items():
+            if t_dict.get(letter) is None or t_dict.get(letter) != s_dict.get(letter):
                 return False
 
         return True
 
 if __name__ == "__main__":
     solution = Solution()
-    print(solution.isAnagram(s="anagram", t="nagaram"))  # true
-    print(solution.isAnagram(s="rat", t="car"))  # false
+    # print(solution.isAnagram(s="anagram", t="nagaram"))  # true
+    # print(solution.isAnagram(s="rat", t="car"))  # false
     print(solution.isAnagram(s="ab", t="a"))  # false
+    # print(solution.isAnagram(s="aacc", t="ccac"))  # false
