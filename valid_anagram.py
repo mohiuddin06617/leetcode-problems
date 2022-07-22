@@ -40,9 +40,28 @@ class Solution:
 
         return True
 
+    def is_anagram_shorter(self, s:str, t:str) -> bool:
+        s_dict = {}
+        t_dict = {}
+
+        s_len = len(s)
+
+        if s_len != len(t):
+            return False
+
+        for index in range(s_len):
+            s_dict[s[index]] = s_dict.get(s[index], 0) + 1
+
+            t_dict[t[index]] = t_dict.get(t[index], 0) + 1
+
+        return s_dict == t_dict
+
+
+
 if __name__ == "__main__":
     solution = Solution()
     # print(solution.isAnagram(s="anagram", t="nagaram"))  # true
     # print(solution.isAnagram(s="rat", t="car"))  # false
     print(solution.isAnagram(s="ab", t="a"))  # false
+    print(solution.is_anagram_shorter(s="ab", t="a"))  # false
     # print(solution.isAnagram(s="aacc", t="ccac"))  # false
