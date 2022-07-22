@@ -31,10 +31,7 @@ class Solution:
         if len(s) == 0:
             return -1
         for letter in s:
-            if letter in s_dict:
-                s_dict[letter] += 1
-            elif letter not in s_dict:
-                s_dict[letter] = 1
+            s_dict[letter] = s_dict.get(letter, 0) + 1
         for index, value in s_dict.items():
             if value == 1:
                 return s.index(index)
