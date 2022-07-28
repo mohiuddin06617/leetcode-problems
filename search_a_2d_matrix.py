@@ -7,9 +7,7 @@ class Solution:
         probable_row = None
 
         for index, matrix_row in enumerate(matrix):
-            first_item = matrix_row[0]
-            last_item = matrix_row[-1]
-            if first_item <= target <= last_item:
+            if matrix_row[0] <= target <= matrix_row[-1]:
                 probable_row = index
                 found = True
 
